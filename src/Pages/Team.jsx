@@ -62,56 +62,90 @@ function Team() {
         />
       </div>
 
-        <div className="py-5  bg-cyan-600">
-      <div className="container mx-auto px-40">
-           <h1 className="text-center text-blue-600 text-lg mt-10">
-            Meet Our Team
-              </h1>
-             
-        <Swiper
-          modules={[Pagination, FreeMode, Autoplay]}
-          spaceBetween={30}
-          freeMode={true}
-          pagination={{ clickable: true }}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-          breakpoints={{
-            0: {
-              slidesPerView: 1,
-            },
-            640: {
-              slidesPerView: 1,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
-          }}
-          className="w-full h-[600px] mt-12"
-        >
-          {services.map((service, index) => (
-            <SwiperSlide key={index}>
-              <div className="flex flex-col items-center text-center p-4 border shadow-[0_20px_50px_rgba(8,_112,_184,_0.7) hover:bg-blue-500 ">
-                <img
-                  src={service.img}
-                  alt={service.title}
-                  className=" h-[300px] w-[300px] object-cover mb-6"
-                />
-                <h3 className="text-xl font-bold">{service.title}</h3>
-                <p className="mt-2 text-gray-600">{service.description}</p>
+    <div className="py-16 bg-[#167fdb]/10 relative overflow-hidden">
+  {/* Decorative elements */}
+  <div className="absolute top-10 left-10 w-20 h-20 bg-[#b8211a]/10 rounded-full opacity-80"></div>
+  <div className="absolute bottom-20 right-20 w-32 h-32 bg-[#167fdb]/10 rounded-full opacity-80"></div>
+
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Section Header */}
+    <div className="text-center mb-12">
+      <span className="inline-block px-4 py-1 text-sm font-semibold tracking-wider text-[#167fdb] uppercase bg-white rounded-full shadow-sm mb-4">
+        Our Specialists
+      </span>
+      <h1 className="text-3xl md:text-4xl font-bold text-[#b8211a] mb-4">
+        Meet Our Dental Team
+      </h1>
+      <div className="w-20 h-1 bg-[#b8211a] mx-auto"></div>
+    </div>
+
+    {/* Team Carousel */}
+    <Swiper
+      modules={[Pagination, FreeMode, Autoplay]}
+      spaceBetween={30}
+      freeMode={true}
+      pagination={{ 
+        clickable: true,
+        el: '.team-pagination',
+        bulletClass: 'swiper-pagination-bullet',
+        bulletActiveClass: 'swiper-pagination-bullet-active'
+      }}
+      autoplay={{ 
+        delay: 3000, 
+        disableOnInteraction: false 
+      }}
+      breakpoints={{
+        0: { slidesPerView: 1 },
+        640: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      }}
+      className="relative"
+    >
+      {services.map((service, index) => (
+        <SwiperSlide key={index}>
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            {/* Image with overlay */}
+            <div className="relative h-64 overflow-hidden">
+              <img
+                src={service.img}
+                alt={service.title}
+                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent"></div>
+              <div className="absolute top-4 left-4 bg-[#b8211a] text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md">
+                Specialist
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            </div>
+            
+            {/* Content */}
+            <div className="p-6 flex-grow">
+              <h3 className="text-xl font-bold text-[#167fdb] mb-2">{service.title}</h3>
+              <p className="text-gray-600 mb-4">{service.description}</p>
+              
+              <button className="flex items-center text-[#b8211a] font-medium group">
+                <span className="mr-2 group-hover:underline">View Profile</span>
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </SwiperSlide>
+      ))}
+      
+      {/* Custom pagination */}
+      <div className="team-pagination mt-8 !relative !bottom-0 flex justify-center gap-2">
+        {services.map((_, i) => (
+          <div 
+            key={i}
+            className="swiper-pagination-bullet w-3 h-3 rounded-full bg-[#167fdb]/30 transition-all duration-300 swiper-pagination-bullet-active:bg-[#b8211a]"
+          ></div>
+        ))}
       </div>
-    </div> 
-
-
-
+    </Swiper>
+  </div>
+</div>
 
 
       
